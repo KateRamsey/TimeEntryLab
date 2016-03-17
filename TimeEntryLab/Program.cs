@@ -10,6 +10,7 @@ namespace TimeEntryLab
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
