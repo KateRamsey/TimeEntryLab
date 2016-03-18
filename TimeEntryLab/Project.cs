@@ -12,5 +12,7 @@ namespace TimeEntryLab
 
         public virtual ICollection<ProjectComment> ProjectComments { get; set; } = new List<ProjectComment>();
 
-}
+        public virtual ICollection<TimeEntry> TimeEntries { get; set; } = new List<TimeEntry>();
+
+    }
 }
