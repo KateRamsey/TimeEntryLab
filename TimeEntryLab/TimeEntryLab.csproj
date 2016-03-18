@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Developer.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Industry.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />

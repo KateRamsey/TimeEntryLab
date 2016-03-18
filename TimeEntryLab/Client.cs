@@ -6,5 +6,7 @@ namespace TimeEntryLab
     {
         public int ID { get; set; }
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+
+        public virtual Industry Industry { get; set; } = new Industry();
     }
 }

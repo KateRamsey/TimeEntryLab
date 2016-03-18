@@ -34,6 +34,7 @@ namespace TimeEntryLab
         public DateTime StartDate { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+        public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
 
     }
 }
