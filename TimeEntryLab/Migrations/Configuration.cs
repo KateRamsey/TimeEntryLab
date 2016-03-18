@@ -26,6 +26,19 @@ namespace TimeEntryLab.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            Developer k = new Developer
+            {
+                FirstName = "Kate",
+                LastName = "Ramsey",
+                Email = "ka@live.com",
+                StartDate = new DateTime(2016, 02, 29)
+            };
+
+            context.Developers.AddOrUpdate(
+                d => new {d.FirstName, d.LastName},
+                k
+                );
         }
     }
 }

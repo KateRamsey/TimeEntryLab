@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TimeEntryLab
 {
     using System;
@@ -28,5 +30,10 @@ namespace TimeEntryLab
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Email { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+
     }
 }

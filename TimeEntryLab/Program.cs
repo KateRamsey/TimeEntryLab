@@ -13,9 +13,13 @@ namespace TimeEntryLab
         {
             var db = new Model1();
             var DevList = new List<Developer>();
-            Developer k = new Developer();
-            k.FirstName = "Kate";
-            k.LastName = "Ramsey";
+            Developer k = new Developer
+            {
+                FirstName = "Kate",
+                LastName = "Ramsey",
+                Email = "kateramsey@live.com",
+                StartDate = new DateTime(2016, 02, 29)
+            };
             DevList.Add(k);
 
             foreach (var d in DevList)
