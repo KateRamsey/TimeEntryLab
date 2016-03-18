@@ -12,6 +12,14 @@ namespace TimeEntryLab
         static void Main(string[] args)
         {
             var db = new Model1();
+
+            foreach (var d in db.Developers)
+            {
+                Console.WriteLine($"{d.FirstName} {d.LastName}, {d.Email}, {d.StartDate.ToShortDateString()}");
+            }
+
+
+            Console.ReadLine();
         }
     }
 }
