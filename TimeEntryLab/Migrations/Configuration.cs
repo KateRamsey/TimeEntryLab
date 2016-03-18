@@ -43,22 +43,22 @@ namespace TimeEntryLab.Migrations
                 k
                 );
 
-            if (!db.Developers.Any())
-            {
-                var developers = Builder<Developer>.CreateListOfSize(10)
-                        .All()
-                        .With(m => m.FirstName = Faker.NameFaker.FirstName())
-                        .With(m => m.LastName = Faker.NameFaker.LastName())
-                        .With(m => m.Email = Faker.InternetFaker.Email())
-                        .With(m => m.StartDate = Faker.DateTimeFaker.DateTime(new DateTime(1985, 01, 01), DateTime.Now))
+            var developers = Builder<Developer>.CreateListOfSize(10)
+                    .All()
+                    .With(m => m.FirstName = Faker.NameFaker.FirstName())
+                    .With(m => m.LastName = Faker.NameFaker.LastName())
+                    .With(m => m.Email = Faker.InternetFaker.Email())
+                    .With(m => m.StartDate = Faker.DateTimeFaker.DateTime(new DateTime(1985, 01, 01), DateTime.Now))
+                    .Build();
 
+            db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
 
-                        .Build();
+            var clients = Builder<Client>.CreateListOfSize(7)
+                .All()
+                .With(m => m.Name = Faker.NameFaker.Name())
+                .Build();
 
-                db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
-            }
-
-
+            db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
         }
     }
