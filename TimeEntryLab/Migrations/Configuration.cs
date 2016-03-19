@@ -54,10 +54,10 @@ namespace TimeEntryLab.Migrations
             {
                 Day = DateTime.Now,
                 TimeSpent = 3.4f,
+                Developer = k,
+                Project = sr,
             };
-            srt.Developer = k;
-            srt.Project = sr;
-      
+
 
 
             var developers = Builder<Developer>.CreateListOfSize(10)
@@ -106,6 +106,7 @@ namespace TimeEntryLab.Migrations
             var project = Builder<Project>.CreateListOfSize(6)
                 .All()
                 .With(n => n.Name = Faker.StringFaker.Alpha(8))
+                .With(p=>p.Client = thv)
                 .Build();
             project.Add(sr);
 

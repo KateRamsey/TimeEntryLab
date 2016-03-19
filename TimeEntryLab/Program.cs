@@ -20,9 +20,18 @@ namespace TimeEntryLab
                 Console.WriteLine($"{d.FirstName} {d.LastName}, {d.Email}, {d.StartDate.ToShortDateString()}");
             }
 
+            Console.WriteLine();
+
             foreach (var c in db.Clients)
             {
                 Console.WriteLine($"Client ID: {c.Id}, Client Name: {c.Name}");
+            }
+
+            Console.WriteLine();
+
+            foreach (var p in db.Projects)
+            {
+                Console.WriteLine($"Project ID: {p.ID}, is named {p.Name}, for client {p.Client.Name}");
             }
 
             Console.ReadLine();

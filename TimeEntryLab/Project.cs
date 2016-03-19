@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 
 namespace TimeEntryLab
@@ -9,6 +10,7 @@ namespace TimeEntryLab
         public string Name { get; set; }
         public virtual ICollection<Developer> Developers { get; set; } = new List<Developer>();
 
+        [Required]
         public virtual Client Client { get; set; }
 
         public virtual ICollection<ProjectComment> ProjectComments { get; set; } = new List<ProjectComment>();
