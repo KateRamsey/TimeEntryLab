@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TimeEntryLab
 {
@@ -8,6 +9,7 @@ namespace TimeEntryLab
         public string Name { get; set; }
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
 
+        [Required]
         public virtual Industry Industry { get; set; } = new Industry();
     }
 }
