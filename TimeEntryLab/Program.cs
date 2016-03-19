@@ -15,6 +15,9 @@ namespace TimeEntryLab
 
             var db = new Model1();
 
+            //to do: Make report options in console app instead of writing all of them
+
+
             foreach (var d in db.Developers)
             {
                 Console.WriteLine($"{d.FirstName} {d.LastName}, {d.Email}, {d.StartDate.ToShortDateString()}");

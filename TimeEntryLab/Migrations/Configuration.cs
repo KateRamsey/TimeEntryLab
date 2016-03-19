@@ -19,6 +19,9 @@ namespace TimeEntryLab.Migrations
         protected override void Seed(TimeEntryLab.Model1 db)
         {
 
+            //to do: add comments for clients, projects, industries
+
+
             Developer k = new Developer
             {
                 FirstName = "Kate",
