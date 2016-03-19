@@ -44,7 +44,8 @@ namespace TimeEntryLab.Migrations
             };
             k.Projects.Add(new Project
             {
-                
+                Name = "Sales Report",
+                Client = thv
             });
 
             db.Developers.AddOrUpdate(
