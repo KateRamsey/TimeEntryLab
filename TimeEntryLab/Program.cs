@@ -34,6 +34,22 @@ namespace TimeEntryLab
                 Console.WriteLine($"Project ID: {p.ID}, is named {p.Name}, for client {p.Client.Name}");
             }
 
+            Console.WriteLine();
+
+            var totalBillingHours = 0f;
+            foreach (var p in db.Projects)
+            {
+                foreach (var t in db.TimeEntries)
+                {
+                    if (t.Project == p)
+                    {
+                        totalBillingHours += t.TimeSpent;
+                    }
+                    Console.WriteLine($"Total Billing Hours for {p.Name} is {totalBillingHours}");
+                    totalBillingHours = 0;
+                }
+            }
+
             Console.ReadLine();
         }
     }
