@@ -75,6 +75,15 @@ namespace TimeEntryLab.Migrations
 
             db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
+            var industry = Builder<Industry>.CreateListOfSize(4)
+                .All()
+                .With(i => i.Name = Faker.CompanyFaker.BS())
+                .Build();
+            industry.Add(media);
+
+            db.Industries.AddOrUpdate(i => i.Id, industry.ToArray());
+
+
 
             var project = Builder<Project>.CreateListOfSize(6)
                 .All()
