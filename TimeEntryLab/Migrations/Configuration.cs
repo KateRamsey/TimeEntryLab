@@ -18,6 +18,7 @@ namespace TimeEntryLab.Migrations
 
         protected override void Seed(TimeEntryLab.Model1 db)
         {
+
             Developer k = new Developer
             {
                 FirstName = "Kate",
@@ -48,12 +49,16 @@ namespace TimeEntryLab.Migrations
                 Client = thv
             };
             k.Projects.Add(sr);
+
+            TimeEntry srt = new TimeEntry
+            {
+                Day = DateTime.Now,
+                TimeSpent = 3.4f,
+            };
+            srt.Developer = k;
+            srt.Project = sr;
       
 
-            db.Developers.AddOrUpdate(
-                d => new { d.FirstName, d.LastName },
-                k
-                );
 
             var developers = Builder<Developer>.CreateListOfSize(10)
                 .All()
@@ -66,15 +71,6 @@ namespace TimeEntryLab.Migrations
 
             db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
 
-
-            var clients = Builder<Client>.CreateListOfSize(7)
-                .All()
-                .With(m => m.Name = Faker.NameFaker.Name())
-                .Build();
-            clients.Add(thv);
-
-            db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
-
             var industry = Builder<Industry>.CreateListOfSize(4)
                 .All()
                 .With(i => i.Name = Faker.CompanyFaker.BS())
@@ -83,6 +79,28 @@ namespace TimeEntryLab.Migrations
 
             db.Industries.AddOrUpdate(i => i.Id, industry.ToArray());
 
+            var clients = Builder<Client>.CreateListOfSize(7)
+                .All()
+                .With(m => m.Name = Faker.NameFaker.Name())
+                .Build();
+            clients.Add(thv);
+
+            //to do: Add Industries to these clients
+
+            db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
+
+            var timeentries = new List<TimeEntry>();
+            //var timeentries = Builder<TimeEntry>.CreateListOfSize(3)
+            //    .All()
+            //    .With(g => g.TimeSpent = 4.4f)
+            //    .With(m => m.Day = DateTime.Now)
+            //    .Build();
+            timeentries.Add(srt);
+
+            //to do: Add projects and developers to these timeentires
+
+            db.TimeEntries.AddOrUpdate(g => g.Id, timeentries.ToArray());
+
 
 
             var project = Builder<Project>.CreateListOfSize(6)
@@ -90,6 +108,8 @@ namespace TimeEntryLab.Migrations
                 .With(n => n.Name = Faker.StringFaker.Alpha(8))
                 .Build();
             project.Add(sr);
+
+            //to do: add clients to these projects
 
             db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
         }
