@@ -60,6 +60,7 @@ namespace TimeEntryLab.Migrations
                     .With(m => m.Email = Faker.InternetFaker.Email())
                     .With(m => m.StartDate = Faker.DateTimeFaker.DateTime(new DateTime(1985, 01, 01), DateTime.Now))
                     .Build();
+            developers.Add(k);
 
             db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
 
@@ -67,6 +68,7 @@ namespace TimeEntryLab.Migrations
                 .All()
                 .With(m => m.Name = Faker.NameFaker.Name())
                 .Build();
+            clients.Add(thv);
 
             db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
