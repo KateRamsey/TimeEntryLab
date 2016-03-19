@@ -29,24 +29,26 @@ namespace TimeEntryLab.Migrations
             k.Groups.Add(new Group
             {
                 Name = "Backend"
-            }); 
-                   
-           Industry media = new Industry
-                {
-                  Name  = "Media"
-                };
-            
+            });
+
+            Industry media = new Industry
+            {
+                Name = "Media"
+            };
+
             Client thv = new Client
             {
                 Name = "THV11",
                 Industry = media
 
             };
-            k.Projects.Add(new Project
+            Project sr = new Project
             {
                 Name = "Sales Report",
                 Client = thv
-            });
+            };
+            k.Projects.Add(sr);
+      
 
             db.Developers.AddOrUpdate(
                 d => new { d.FirstName, d.LastName },
@@ -54,15 +56,16 @@ namespace TimeEntryLab.Migrations
                 );
 
             var developers = Builder<Developer>.CreateListOfSize(10)
-                    .All()
-                    .With(m => m.FirstName = Faker.NameFaker.FirstName())
-                    .With(m => m.LastName = Faker.NameFaker.LastName())
-                    .With(m => m.Email = Faker.InternetFaker.Email())
-                    .With(m => m.StartDate = Faker.DateTimeFaker.DateTime(new DateTime(1985, 01, 01), DateTime.Now))
-                    .Build();
+                .All()
+                .With(m => m.FirstName = Faker.NameFaker.FirstName())
+                .With(m => m.LastName = Faker.NameFaker.LastName())
+                .With(m => m.Email = Faker.InternetFaker.Email())
+                .With(m => m.StartDate = Faker.DateTimeFaker.DateTime(new DateTime(1985, 01, 01), DateTime.Now))
+                .Build();
             developers.Add(k);
 
             db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
+
 
             var clients = Builder<Client>.CreateListOfSize(7)
                 .All()
@@ -72,6 +75,14 @@ namespace TimeEntryLab.Migrations
 
             db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
+
+            var project = Builder<Project>.CreateListOfSize(6)
+                .All()
+                .With(n => n.Name = Faker.StringFaker.Alpha(8))
+                .Build();
+            project.Add(sr);
+
+            db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
         }
     }
 }
