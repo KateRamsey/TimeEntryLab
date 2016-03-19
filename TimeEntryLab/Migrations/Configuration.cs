@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FizzWare.NBuilder;
 
 namespace TimeEntryLab.Migrations
@@ -17,26 +18,34 @@ namespace TimeEntryLab.Migrations
 
         protected override void Seed(TimeEntryLab.Model1 db)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
             Developer k = new Developer
             {
                 FirstName = "Kate",
                 LastName = "Ramsey",
-                Email = "ka@live.com",
+                Email = "kateramsey@live.com",
                 StartDate = new DateTime(2016, 02, 29)
             };
+
+            k.Groups.Add(new Group
+            {
+                Name = "Backend"
+            }); 
+                   
+           Industry media = new Industry
+                {
+                  Name  = "Media"
+                };
+            
+            Client thv = new Client
+            {
+                Name = "THV11",
+                Industry = media
+
+            };
+            k.Projects.Add(new Project
+            {
+                
+            });
 
             db.Developers.AddOrUpdate(
                 d => new { d.FirstName, d.LastName },
