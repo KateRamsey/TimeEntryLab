@@ -82,10 +82,10 @@ namespace TimeEntryLab.Migrations
             var clients = Builder<Client>.CreateListOfSize(7)
                 .All()
                 .With(m => m.Name = Faker.NameFaker.Name())
+                .With(i=>i.Industry=industry[3])
                 .Build();
             clients.Add(thv);
 
-            //to do: Add Industries to these clients
 
             db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
@@ -110,7 +110,6 @@ namespace TimeEntryLab.Migrations
                 .Build();
             project.Add(sr);
 
-            //to do: add clients to these projects
 
             db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
         }
