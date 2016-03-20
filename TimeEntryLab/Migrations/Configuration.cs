@@ -92,15 +92,9 @@ namespace TimeEntryLab.Migrations
 
             db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
 
-            var timeentries = new List<TimeEntry>();
-            //var timeentries = Builder<TimeEntry>.CreateListOfSize(3)
-            //    .All()
-            //    .With(g => g.TimeSpent = 4.4f)
-            //    .With(m => m.Day = DateTime.Now)
-            //    .Build();
-            timeentries.Add(srt);
+            var timeentries = new List<TimeEntry> {srt};
 
-            //to do: Add projects and developers to these timeentires
+
 
             db.TimeEntries.AddOrUpdate(g => g.Id, timeentries.ToArray());
 
@@ -115,6 +109,34 @@ namespace TimeEntryLab.Migrations
 
 
             db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
+
+            ClientComment thvcomment = new ClientComment
+            {
+                Developer = k,
+                Client = thv,
+                Comment = "They are awesome to work with"
+            };
+
+            IndustryComment mediaComment = new IndustryComment()
+            {
+                Developer = k,
+                Industry = media,
+                Comment = "Media people are strange"
+            };
+
+            ProjectComment srComment = new ProjectComment()
+            {
+                Comment = "This project sucks!",
+                Developer = k,
+                Project = sr
+            };
+
+            k.ClientComments.Add(thvcomment);
+            k.IndustryComments.Add(mediaComment);
+            k.ProjectComments.Add(srComment);
+
+
+            db.Developers.AddOrUpdate(k);
         }
     }
 }

@@ -45,5 +45,7 @@ namespace TimeEntryLab
         public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
         public virtual ICollection<TimeEntry> TimeEntries { get; set; } = new List<TimeEntry>();
         public virtual ICollection<ClientComment> ClientComments { get; set; } = new List<ClientComment>();
+        public virtual ICollection<ProjectComment> ProjectComments { get; set; } = new List<ProjectComment>();
+        public virtual ICollection<IndustryComment> IndustryComments { get; set; } = new List<IndustryComment>();
     }
 }
