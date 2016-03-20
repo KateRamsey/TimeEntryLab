@@ -81,7 +81,7 @@ namespace TimeEntryLab.Migrations
 
             var clients = Builder<Client>.CreateListOfSize(7)
                 .All()
-                .With(m => m.Name = Faker.NameFaker.Name())
+                .With(m => m.Name = Faker.CompanyFaker.Name())
                 .With(i=>i.Industry=industry[3])
                 .Build();
             clients.Add(thv);
