@@ -19,9 +19,6 @@ namespace TimeEntryLab.Migrations
         protected override void Seed(TimeEntryLab.Model1 db)
         {
 
-            //to do: add comments for clients, projects, industries
-
-
             Developer k = new Developer
             {
                 FirstName = "Kate",
@@ -72,7 +69,7 @@ namespace TimeEntryLab.Migrations
                 .Build();
             developers.Add(k);
 
-            db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
+
 
             var industry = Builder<Industry>.CreateListOfSize(4)
                 .All()
@@ -80,7 +77,7 @@ namespace TimeEntryLab.Migrations
                 .Build();
             industry.Add(media);
 
-            db.Industries.AddOrUpdate(i => i.Id, industry.ToArray());
+
 
             var clients = Builder<Client>.CreateListOfSize(7)
                 .All()
@@ -90,13 +87,13 @@ namespace TimeEntryLab.Migrations
             clients.Add(thv);
 
 
-            db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
+
 
             var timeentries = new List<TimeEntry> {srt};
 
 
 
-            db.TimeEntries.AddOrUpdate(g => g.Id, timeentries.ToArray());
+
 
 
 
@@ -108,7 +105,7 @@ namespace TimeEntryLab.Migrations
             project.Add(sr);
 
 
-            db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
+
 
             ClientComment thvcomment = new ClientComment
             {
@@ -135,8 +132,11 @@ namespace TimeEntryLab.Migrations
             k.IndustryComments.Add(mediaComment);
             k.ProjectComments.Add(srComment);
 
-
-            db.Developers.AddOrUpdate(k);
+            db.Developers.AddOrUpdate(c => c.Id, developers.ToArray());
+            db.Projects.AddOrUpdate(p => p.ID, project.ToArray());
+            db.TimeEntries.AddOrUpdate(g => g.Id, timeentries.ToArray());
+            db.Clients.AddOrUpdate(c => c.Id, clients.ToArray());
+            db.Industries.AddOrUpdate(i => i.Id, industry.ToArray());
         }
     }
 }
