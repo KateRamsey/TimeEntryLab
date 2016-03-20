@@ -14,46 +14,77 @@ namespace TimeEntryLab
         {
 
             var db = new Model1();
+            char UserInput;
+            bool KeepGoing = true;
 
             //to do: Make report options in console app instead of writing all of them
-
-
-            foreach (var d in db.Developers)
+            while (KeepGoing)
             {
-                Console.WriteLine($"{d.FirstName} {d.LastName}, {d.Email}, {d.StartDate.ToShortDateString()}");
-            }
+                Console.WriteLine("Which report would you like to see?");
+                Console.WriteLine("1 for developers");
+                Console.WriteLine("2 for clients");
+                Console.WriteLine("3 for projects");
+                Console.WriteLine("4 for billing hours");
+                UserInput = Console.ReadLine().ToCharArray()[0];
 
-            Console.WriteLine();
-
-            foreach (var c in db.Clients)
-            {
-                Console.WriteLine($"Client ID: {c.Id}, Client Name: {c.Name}");
-            }
-
-            Console.WriteLine();
-
-            foreach (var p in db.Projects)
-            {
-                Console.WriteLine($"Project ID: {p.ID}, is named {p.Name}, for client {p.Client.Name}");
-            }
-
-            Console.WriteLine();
-
-            var totalBillingHours = 0f;
-            foreach (var p in db.Projects)
-            {
-                foreach (var t in db.TimeEntries)
+                if (UserInput == '1')
                 {
-                    if (t.Project == p)
-                    {
-                        totalBillingHours += t.TimeSpent;
-                    }
-                    Console.WriteLine($"Total Billing Hours for {p.Name} is {totalBillingHours}");
-                    totalBillingHours = 0;
-                }
-            }
 
-            Console.ReadLine();
+
+                    foreach (var d in db.Developers)
+                    {
+                        Console.WriteLine($"{d.FirstName} {d.LastName}, {d.Email}, {d.StartDate.ToShortDateString()}");
+                    }
+
+                    Console.WriteLine();
+                }
+
+                if (UserInput == '2')
+                {
+                    foreach (var c in db.Clients)
+                    {
+                        Console.WriteLine($"Client ID: {c.Id}, Client Name: {c.Name}");
+                    }
+
+                    Console.WriteLine();
+                }
+
+                if (UserInput == '3')
+                {
+                    foreach (var p in db.Projects)
+                    {
+                        Console.WriteLine($"Project ID: {p.ID}, is named {p.Name}, for client {p.Client.Name}");
+                    }
+
+                    Console.WriteLine();
+                }
+
+                if (UserInput == '4')
+                {
+                    var totalBillingHours = 0f;
+                    foreach (var p in db.Projects)
+                    {
+                        foreach (var t in db.TimeEntries)
+                        {
+                            if (t.Project == p)
+                            {
+                                totalBillingHours += t.TimeSpent;
+                            }
+                            Console.WriteLine($"Total Billing Hours for {p.Name} is {totalBillingHours}");
+                            totalBillingHours = 0;
+                        }
+                    }
+                }
+
+
+                Console.WriteLine("Would you like to run another repot? (Y)es or (N)o");
+                UserInput = Console.ReadLine().ToCharArray()[0];
+                if (UserInput == 'N' || UserInput == 'n')
+                {
+                    KeepGoing = false;
+                }
+                Console.Clear();
+            }
         }
     }
 }
